@@ -73,3 +73,9 @@ class DataStore(oauth.OAuthDataStore):
             self.request_token.save()
             return self.request_token
         return None
+
+    def lookup_user(self, username, password):
+        user = authenticate(username=username, password=password)
+        if user and user.is_active:
+            return user
+        return None

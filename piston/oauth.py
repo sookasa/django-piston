@@ -419,9 +419,9 @@ class OAuthServer(object):
         consumer = self._get_consumer(oauth_request)
         verifier = self._get_verifier(oauth_request)
         # Get the request token.
-        token = self._get_token(oauth_request, 'request')
+        token = self._get_token(oauth_request, 'request', oauth_request.is_xauth())
         self._check_signature(oauth_request, consumer, token)
-        new_token = self.data_store.fetch_access_token(consumer, token, verifier, oauth_request.is_xauth())
+        new_token = self.data_store.fetch_access_token(consumer, token, verifier)
         return new_token
 
     def verify_request(self, oauth_request):

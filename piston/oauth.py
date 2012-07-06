@@ -504,7 +504,7 @@ class OAuthServer(object):
     def _get_verifier(self, oauth_request):
         if not oauth_request.is_xauth():
             return oauth_request.get_parameter('oauth_verifier')
-        return
+        return ''
 
     def _check_signature(self, oauth_request, consumer, token):
         timestamp, nonce = oauth_request._get_timestamp_nonce()

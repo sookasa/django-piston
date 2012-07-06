@@ -3,6 +3,8 @@ import oauth
 from models import Nonce, Token, Consumer
 from models import generate_random, VERIFIER_SIZE
 
+from django.contrib.auth import authenticate
+
 class DataStore(oauth.OAuthDataStore):
     """Layer between Python OAuth and Django database."""
     def __init__(self, oauth_request):

@@ -32,7 +32,7 @@ class rc_factory(object):
                  ACCEPTED = ('Accepted', 202),
                  DELETED = ('', 204), # 204 says "Don't send a body!"
                  BAD_REQUEST = ('Bad Request', 400),
-                 FORBIDDEN = ('Forbidden', 401),
+                 FORBIDDEN = ('Forbidden', 403),
                  NOT_FOUND = ('Not Found', 404),
                  NOT_ACCEPTABLE = ('Not acceptable', 406),
                  DUPLICATE_ENTRY = ('Conflict/Duplicate', 409),

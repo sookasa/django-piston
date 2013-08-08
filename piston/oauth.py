@@ -371,6 +371,7 @@ class OAuthRequest(object):
 class OAuthServer(object):
     """A worker to check the validity of a request against a data store."""
     timestamp_threshold = 300 # In seconds, five minutes.
+    enable_timestamp = True
     version = VERSION
     signature_methods = None
     data_store = None
@@ -527,6 +528,10 @@ class OAuthServer(object):
 
     def _check_timestamp(self, timestamp):
         """Verify that timestamp is recentish."""
+
+        if not self.enable_timestamp:
+            return True
+
         timestamp = int(timestamp)
         now = int(time.time())
         lapsed = now - timestamp

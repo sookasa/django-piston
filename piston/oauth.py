@@ -372,6 +372,7 @@ class OAuthServer(object):
     """A worker to check the validity of a request against a data store."""
     timestamp_threshold = 300 # In seconds, five minutes.
     enable_timestamp = True
+    enable_nonce = True
     version = VERSION
     signature_methods = None
     data_store = None
@@ -542,6 +543,10 @@ class OAuthServer(object):
 
     def _check_nonce(self, consumer, token, nonce):
         """Verify that the nonce is uniqueish."""
+
+        if not self.enable_nonce:
+            return True
+
         nonce = self.data_store.lookup_nonce(consumer, token, nonce)
         if nonce:
             raise OAuthError('Nonce already used: %s' % str(nonce))
